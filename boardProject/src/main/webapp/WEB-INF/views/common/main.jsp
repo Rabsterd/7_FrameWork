@@ -46,6 +46,14 @@
             	
             	<hr>
             
+            	<h3>이메일을 입력받아 일치하는 회원의 정보를 조회</h3>
+            	<input id="inputEmail">
+            	<button id="btn2">조회</button>
+            	<ul id="result2">
+            		
+            	</ul>
+            	
+            
             </section>
             
 
@@ -88,7 +96,7 @@
 		
 		                    <!-- 회원가입/ Id/pw 찾기 영역 -->
 		                    <section class="signup-find-area">
-		                        <a href="#">회원가입</a>
+		                        <a href="/member/signUp">회원가입</a>
 		                        <span>|</span>
 		                        <a href="#">ID/PW 찾기</a>
 		                    </section>
