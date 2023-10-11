@@ -21,4 +21,8 @@ public class EmailDAO {
 
 		return sqlSession.insert("emailMapper.insertAuthKey", map);
 	}
+	
+	public int checkAuthKey(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("emailMapper.checkAuthKey", paramMap);
+	}
 }

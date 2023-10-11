@@ -117,4 +117,11 @@ public class EmailServiceImpl implements EmailService{
 
 		
 	}
+	
+	
+	@Override
+	public int checkAuthKey(Map<String, Object> paramMap) {
+		return dao.checkAuthKey(paramMap);
+	}  
+	
 }
