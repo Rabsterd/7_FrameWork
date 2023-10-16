@@ -25,7 +25,6 @@
         	- jsp 파일 경로는 webapp 폴더 기준으로 작성
         	- JSP 액션 태그(jsp에 기본 내장됨)
         	- 다른 jsp 파일의 코드를 현재 위치에 추가
-        
          --%>
          
         <jsp:include page="/WEB-INF/views/common/header.jsp" />
