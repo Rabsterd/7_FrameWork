@@ -52,4 +52,59 @@ public class BoardDAO {
 		// 3) selectList("namespace.id", 파라미터, RowBounds) 호출
 		return sqlSession.selectList("boardMapper.selectBoardList", boardCode, rowBounds);
 	}
+
+	
+	/** 게시글 상세 조회
+	 * @param map
+	 * @return
+	 */
+	public Board selectBoard(Map<String,Object> map) {
+		
+		return sqlSession.selectOne("boardMapper.selectBoard",map);
+	}
+
+	
+	/** 좋아요 여부 확인 DAO
+	 * @param map
+	 * @return
+	 */
+	public int boardLikeCheck(Map<String, Object> map) {
+		
+		return sqlSession.selectOne("boardMapper.boardLikeCheck",map);
+	}
+
+	/** 조회수 증가 DAO
+	 * @param boardNo
+	 * @return
+	 */
+	public int updateReadCount(int boardNo) {
+		return sqlSession.update("boardMapper.updateReadCount",boardNo);
+	}
+
+	
+	/** 좋아요 테이블 삽입
+	 * @param paramMap
+	 * @return
+	 */
+	public int insertBoardLike(Map<String, Integer> paramMap) {		
+		return sqlSession.insert("boardMapper.insertBoardLike", paramMap);
+	}
+
+	
+	/** 좋아요 삭제
+	 * @param paramMap
+	 * @return
+	 */
+	public int deleteBoardLike(Map<String, Integer> paramMap) {		
+		return sqlSession.delete("boardMapper.deleteBoardLike", paramMap);
+	}
+
+	
+	/** 좋아요 개수 조회
+	 * @param integer
+	 * @return
+	 */
+	public int countBoardLike(Integer boardNo) {
+		return sqlSession.selectOne("boardMapper.countBoardLike", boardNo);
+	}
 }
