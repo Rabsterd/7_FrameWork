@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="userMapper">
+
+	<!-- VO와 DB의 컬럼 이름이 다르면 resultMap을 통해 동일한 값임을 알린다 -->
+	<resultMap type="User" id="user_rm">
+
+	<id property="userNo" column="USER_NO" />
+	
+	<result property="userId" column="USER_ID" />
+	
+	<result property="userName" column="USER_NAME" />
+	
+	<result property="userAge" column="USER_AGE" />
+	
+	</resultMap>
+
+	<!-- LIKE "%{$userId}%" : userId 값이 포함된 USER_ID를 가져옴-->
+	<select id="search">
+		SELECT USER_NO, USER_ID, USER​_NAME, USER​_AGE
+		FROM USER
+		WHERE USER_ID LIKE "%{$userId}%"
+	</select>
+</mapper>

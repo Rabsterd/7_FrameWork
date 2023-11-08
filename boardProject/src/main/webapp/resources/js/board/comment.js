@@ -1,8 +1,17 @@
+console.log("test")
 // 댓글 목록 조회
 function selectCommentList(){
     
-    fetch()
-    .then()
+    // REST(REpresentational State Transfer) API
+    // - 자원을 이름(주소)으로 구분하여
+    //	 자원의 상태를 주고 받는 것
+    
+    // -> 주소를 명시하고
+    //	Http Method(GET, POST, PUT, DELETE)를 이용해
+    //	지정된 자원에 대한 CRUD 진행
+    
+    fetch("/comment?boardNo=" + boardNo)
+    .then(response => response.json())
     .then(cList => {
         console.log(cList);
 
@@ -120,6 +129,7 @@ const commentContent = document.getElementById("commentContent");
 
 addComment.addEventListener("click", e => { // 댓글 등록 버튼이 클릭이 되었을 때
 
+	console.log("test")
     // 1) 로그인이 되어있나? -> 전역변수 memberNo 이용
     if(loginMemberNo == ""){ // 로그인 X
         alert("로그인 후 이용해주세요.");
@@ -136,8 +146,18 @@ addComment.addEventListener("click", e => { // 댓글 등록 버튼이 클릭이
     }
 
     // 3) AJAX를 이용해서 댓글 내용 DB에 저장(INSERT)
-    fetch()
-    .then()
+    
+    const data = {"commentContent" : commentContent.value,
+    				"memberNo" : loginMemberNo,
+    				"boardNo" : boardNo
+    				};
+    
+    fetch("/comment",{
+    	method : "POST",
+    	headers : {"Content-Type" : "application/json"},
+    	body : JSON.stringify(data) // JS 객체 -> JSON 파싱
+    })
+    .then(resp => resp.text())
     .then(result => {
         if(result > 0){ // 등록 성공
             alert("댓글이 등록되었습니다.");
@@ -161,8 +181,8 @@ function deleteComment(commentNo){
 
     if( confirm("정말로 삭제 하시겠습니까?") ){
 
-        fetch()
-        .then()
+        fetch("/comment/delelte")
+        .then(resp => resp.text())
         .then(result => {
             if(result > 0){
                 alert("삭제되었습니다");
@@ -382,10 +402,19 @@ function insertChildComment(parentNo, btn){
         return;
     }
 
+	    const data = {"commentContent" : commentContent,
+    				"memberNo" : loginMemberNo,
+    				"boardNo" : boardNo,
+    				"parentNo" : parentNo
+    				};
 
 
-    fetch()
-    .then()
+    fetch("/comment",{
+    	method : "POST",
+    	headers : {"Content-Type" : "application/json"},
+    	body : JSON.stringify(data) // JS 객체 -> JSON 파싱
+    })
+    .then(resp => resp.text())
     .then(result => {
         if(result > 0){ // 등록 성공
             alert("답글이 등록되었습니다.");
